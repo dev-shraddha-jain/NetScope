@@ -50,29 +50,26 @@ dependencies {
 
 afterEvaluate {
     publishing {
+
         publications {
             register<MavenPublication>("release") {
                 groupId = "com.groot.netscope" // Replace with your desired group ID
                 artifactId = "netscope" // Replace with your desired artifact ID
                 version = "1.0" // Replace with your desired version
 
-                afterEvaluate {
-                    from(components["release"])
-                }
+                from(components["release"])
             }
         }
         repositories {
-            // Configure your repositories here. For local testing:
             mavenLocal()
-            // For remote repositories (e.g., Maven Central or a private repository)
-            // maven {
-            //     name = "GitHubPackages"
-            //     url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
-            //     credentials {
-            //         username = System.getenv("GITHUB_ACTOR")
-            //         password = System.getenv("GITHUB_TOKEN")
-            //     }
-            // }
+             maven {
+                 name = "GitHubPackages"
+                 url = uri("https://maven.pkg.github.com/dev-shraddha-jain/NetScope") // Updated URL
+                 credentials {
+                     username = "dev-shraddha-jain" // Your GitHub username directly
+                     password = "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" // Your GitHub PAT from env variable
+                 }
+             }
         }
     }
 }
