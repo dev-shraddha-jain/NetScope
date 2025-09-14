@@ -52,10 +52,10 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            register<MavenPublication>("maven") { // The name can be anything, "maven" is common
-                groupId = "com.github.dev-shraddha-jain" // Changed for JitPack
-                artifactId = "NetScope" // Changed for JitPack (repository name)
-                version = "1.0" // JitPack uses Git tags/releases for versioning by consumers
+            register<MavenPublication>("maven") {
+                groupId = "com.github.api.inceptor"
+                artifactId = "NetScope"
+                version = "1.0.0" // JitPack uses Git tags/releases for versioning by consumers
 
                 from(components["release"])
             }
