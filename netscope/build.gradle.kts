@@ -30,6 +30,7 @@ android {
             JavaLanguageVersion.of(17)
         }
     }
+
     buildFeatures {
         compose = true
     }
@@ -50,26 +51,15 @@ dependencies {
 
 afterEvaluate {
     publishing {
-
         publications {
-            register<MavenPublication>("release") {
-                groupId = "com.groot.netscope" // Replace with your desired group ID
-                artifactId = "netscope" // Replace with your desired artifact ID
-                version = "1.0" // Replace with your desired version
+            register<MavenPublication>("maven") { // The name can be anything, "maven" is common
+                groupId = "com.github.dev-shraddha-jain" // Changed for JitPack
+                artifactId = "NetScope" // Changed for JitPack (repository name)
+                version = "1.0" // JitPack uses Git tags/releases for versioning by consumers
 
                 from(components["release"])
             }
         }
-        repositories {
-            mavenLocal()
-             maven {
-                 name = "GitHubPackages"
-                 url = uri("https://maven.pkg.github.com/dev-shraddha-jain/NetScope") // Updated URL
-                 credentials {
-                     username = "dev-shraddha-jain" // Your GitHub username directly
-                     password = "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" // Your GitHub PAT from env variable
-                 }
-             }
-        }
+        // repositories block removed for JitPack
     }
 }
